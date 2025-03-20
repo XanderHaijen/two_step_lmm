@@ -1,0 +1,3023 @@
+#LyX 1.6.7 created this file. For more info see http://www.lyx.org/
+\lyxformat 345
+\begin_document
+\begin_header
+\textclass report
+\use_default_options false
+\language english
+\inputencoding auto
+\font_roman times
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize a4paper
+\use_geometry false
+\use_amsmath 2
+\use_esint 0
+\cite_engine basic
+\use_bibtopic false
+\paperorientation portrait
+\secnumdepth 2
+\tocdepth 2
+\paragraph_separation skip
+\defskip medskip
+\quotes_language english
+\papercolumns 1
+\papersides 2
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\author "" 
+\author "" 
+\end_header
+
+\begin_body
+
+\begin_layout Title
+HYperspectral Data Retrieval and Analysis (HYDRA): Synthesis tools package
+\end_layout
+
+\begin_layout Author
+Computational Intelligence Group
+\begin_inset Newline newline
+\end_inset
+
+Basque Country University (UPV/EHU)
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Flex URL
+status collapsed
+
+\begin_layout Plain Layout
+
+http://www.ehu.es/computationalintelligence
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset toc
+LatexCommand tableofcontents
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Chapter
+Introduction
+\end_layout
+
+\begin_layout Standard
+This document introduces the Synthesis tools package of the HYDRA project.
+ HYDRA is an on-work development by the Computational Intelligence group
+ (
+\begin_inset Flex URL
+status collapsed
+
+\begin_layout Plain Layout
+
+http://www.ehu.es/ccwintco
+\end_layout
+
+\end_inset
+
+) of the Basque Country University (
+\begin_inset Flex URL
+status collapsed
+
+\begin_layout Plain Layout
+
+http://www.ehu.es
+\end_layout
+
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Standard
+HYDRA is a set of tools focused in the development of computational methods
+ for the analysis of hyperspectral imagery and the information retrieval
+ from large hyperspectral databases.
+ The synthesis tools package is part of the HYDRA project and it groups
+ a set of methods to make in-lab synthetic hyperspectral images.
+\end_layout
+
+\begin_layout Standard
+HYDRA is an open source project under the GNU GPL3 license.
+ A copy of the license should be included with the utilities.
+\end_layout
+
+\begin_layout Standard
+The Synthesis tools package has been actually developed with MATLAB 7.4 software
+ (
+\begin_inset Flex URL
+status collapsed
+
+\begin_layout Plain Layout
+
+http://www.mathworks.com/
+\end_layout
+
+\end_inset
+
+) and a licensed copy is needed to use it.
+\end_layout
+
+\begin_layout Chapter
+Synthesis tools package description
+\end_layout
+
+\begin_layout Section
+Installation
+\end_layout
+
+\begin_layout Standard
+You can download the Synthesis tools package from the Computational Intelligence
+ group webpage: 
+\begin_inset Flex URL
+status collapsed
+
+\begin_layout Plain Layout
+
+http://www.ehu.es/ccwintco/XXX
+\end_layout
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+To make it available from MATLAB:
+\end_layout
+
+\begin_layout Enumerate
+Unzip the downloaded file 
+\begin_inset Quotes eld
+\end_inset
+
+synthesis.zip
+\begin_inset Quotes erd
+\end_inset
+
+.
+ This will create a folder named 
+\begin_inset Quotes eld
+\end_inset
+
+synthesis
+\begin_inset Quotes erd
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Run the MATLAB software (Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:matlab_software"
+
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Enumerate
+In the menu press 
+\begin_inset Quotes eld
+\end_inset
+
+File->Set Path...
+\begin_inset Quotes erd
+\end_inset
+
+.
+ This will open the 
+\begin_inset Quotes eld
+\end_inset
+
+Set Path
+\begin_inset Quotes erd
+\end_inset
+
+ window (Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:matlab_setpath"
+
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Enumerate
+In the 
+\begin_inset Quotes eld
+\end_inset
+
+Set Path
+\begin_inset Quotes erd
+\end_inset
+
+ window press 
+\begin_inset Quotes eld
+\end_inset
+
+Add with subfolders
+\begin_inset Quotes erd
+\end_inset
+
+ and select the 
+\begin_inset Quotes eld
+\end_inset
+
+Synthesis
+\begin_inset Quotes erd
+\end_inset
+
+ folder (Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:matlab_synthesis"
+
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Enumerate
+Press the 
+\begin_inset Quotes eld
+\end_inset
+
+Save
+\begin_inset Quotes erd
+\end_inset
+
+ buttom and close the 
+\begin_inset Quotes eld
+\end_inset
+
+Set Path
+\begin_inset Quotes erd
+\end_inset
+
+ window (Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:matlab_path"
+
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename images/matlab1.png
+	lyxscale 30
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+The MATLAB software.
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:matlab_software"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename images/matlab2.png
+	lyxscale 30
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+The 
+\begin_inset Quotes eld
+\end_inset
+
+Set Path
+\begin_inset Quotes erd
+\end_inset
+
+ Window.
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:matlab_setpath"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename images/matlab3.png
+	lyxscale 30
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Selecting the 
+\begin_inset Quotes eld
+\end_inset
+
+synthesis
+\begin_inset Quotes erd
+\end_inset
+
+ package.
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:matlab_synthesis"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename images/matlab4.png
+	lyxscale 30
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+The 
+\begin_inset Quotes eld
+\end_inset
+
+synthesis
+\begin_inset Quotes erd
+\end_inset
+
+ package has been added to the Matlab path.
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:matlab_path"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The Synthesis package has the following structure:
+\end_layout
+
+\begin_layout Itemize
+Synthesis
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Endmembers
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+USGS Spectral library (inside 
+\begin_inset Quotes eld
+\end_inset
+
+USGS Spectral library
+\begin_inset Quotes erd
+\end_inset
+
+ folder there are the original spectral library from the USGS lab).
+\end_layout
+
+\begin_layout Itemize
+endmembers.mat (a selection of spectras for direct use with MATLAB).
+\end_layout
+
+\begin_layout Itemize
+endmembersreflectance.m (a Matlab file to extract the endmembers reflectance
+ to a 
+\begin_inset Quotes eld
+\end_inset
+
+.mat
+\begin_inset Quotes erd
+\end_inset
+
+ file).
+\end_layout
+
+\begin_layout Itemize
+endmembersreflectance.mat (the reflectance values of the selection of endmembers
+ for direct use with MATLAB)
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Gaussian Fields (inside 
+\begin_inset Quotes eld
+\end_inset
+
+Gaussian Fields
+\begin_inset Quotes erd
+\end_inset
+
+ folder there are the source files for the Gaussian Fields based synthetic
+ method).
+\end_layout
+
+\begin_layout Itemize
+Legendre (inside 
+\begin_inset Quotes eld
+\end_inset
+
+Legendre
+\begin_inset Quotes erd
+\end_inset
+
+ folder there are the source files for the Legendre based synthetic method).
+\end_layout
+
+\begin_layout Itemize
+COPYING.txt (the GNU GPL3 license).
+\end_layout
+
+\begin_layout Itemize
+manual.pdf (this document).
+\end_layout
+
+\end_deeper
+\begin_layout Section
+The USGS spectral library
+\end_layout
+
+\begin_layout Standard
+Researchers at the USGS Spectroscopy Lab have measured the spectral reflectance
+ of hundreds of materials in the lab, and have compiled a spectral library.
+ The libraries are used as references for material identification in remote
+ sensing images.
+ The website of the USGS Spectroscopy lab is 
+\begin_inset Flex URL
+status collapsed
+
+\begin_layout Plain Layout
+
+http://speclab.cr.usgs.gov/
+\end_layout
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+The UV to mid-infrared 0.2-150 micron library (splib06) contains over 1300
+ spectra including mid-infrared data as well as spectra from splib05a and
+ additional visible and near-infrared spectra.
+ The library includes many more minerals, organic and volatile compounds,
+ vegetation, and man-made materials than our previous libraries.
+\end_layout
+
+\begin_layout Standard
+The full USGS Spectral library is included with the Synthesis package, but
+ the most recent library is always available throught the USGS Spectroscopy
+ lab: 
+\begin_inset Flex URL
+status collapsed
+
+\begin_layout Plain Layout
+
+http://speclab.cr.usgs.gov/spectral-lib.html
+\end_layout
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+A selection of 20 minerals endmembers is included with the Synthesis package
+ as a 
+\begin_inset Quotes eld
+\end_inset
+
+endmembers_samples.mat
+\begin_inset Quotes erd
+\end_inset
+
+ file for direct use.
+ This file, localized in the 
+\begin_inset Quotes eld
+\end_inset
+
+endmembers
+\begin_inset Quotes erd
+\end_inset
+
+ folder, loads 20 matrix each correponding to a mineral endmember (Figure
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:matlab_usgs"
+
+\end_inset
+
+).
+ Each matrix has 
+\begin_inset Formula $2151$
+\end_inset
+
+ rows and 
+\begin_inset Formula $3$
+\end_inset
+
+ columns, being each row a measure for each wavelenght and the columns the
+ following respectively measures: the wavelength value, the reflectance
+ and the variance observed in the measuring proccess.
+ reflectance is the relevant value to work in the synthetic proccess (the
+ second column).
+ Note that 
+\begin_inset Formula $-1.23\exp^{34}$
+\end_inset
+
+ indicates a deleted number, and that standard deviations of 
+\begin_inset Formula $0.000000$
+\end_inset
+
+ means not measured.
+\end_layout
+
+\begin_layout Standard
+Together with the sample endmembers 
+\begin_inset Quotes eld
+\end_inset
+
+mat
+\begin_inset Quotes erd
+\end_inset
+
+ file, a 
+\begin_inset Quotes eld
+\end_inset
+
+getEndmembers.m
+\begin_inset Quotes erd
+\end_inset
+
+ function is provided to extract the information on the USGS folders to
+ a matlab variable.
+ This function use is explained in chapter 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "cha:Synthetic-Graphical-User"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+If more information is needed, please see the USGS data files or visit the
+ USGS official web site.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename images/matlab_usgs.png
+	lyxscale 30
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Endmembers from the 
+\begin_inset Quotes eld
+\end_inset
+
+endmembers_sample.mat
+\begin_inset Quotes erd
+\end_inset
+
+ file loaded in the MATLAB workspace.
+ A plot of the asphalt_gds367 reflectance is showed.
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:matlab_usgs"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Chapter
+Use examples
+\end_layout
+
+\begin_layout Section
+Loading the endmembers
+\end_layout
+
+\begin_layout Itemize
+Loading the included selection of endmembers from the USGS Spectral library:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Enter the 
+\begin_inset Quotes eld
+\end_inset
+
+Endmembers
+\begin_inset Quotes erd
+\end_inset
+
+ folder into the 
+\begin_inset Quotes eld
+\end_inset
+
+Synthesis
+\begin_inset Quotes erd
+\end_inset
+
+ package from the Matlab path (Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:matlab_endmembers"
+
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Enumerate
+Into the folder panel on the left 
+\begin_inset Quotes eld
+\end_inset
+
+double click
+\begin_inset Quotes erd
+\end_inset
+
+ over the 
+\begin_inset Quotes eld
+\end_inset
+
+endmembers_samples.mat
+\begin_inset Quotes erd
+\end_inset
+
+ file.
+ This will load the set of spectras to the workplace.
+ Alternativelly, you can load them from the console or a 
+\begin_inset Quotes eld
+\end_inset
+
+.m
+\begin_inset Quotes erd
+\end_inset
+
+ file with the command: 
+\begin_inset Quotes eld
+\end_inset
+
+load endmembers_samples.mat
+\begin_inset Quotes erd
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Select the 
+\begin_inset Quotes eld
+\end_inset
+
+workspace
+\begin_inset Quotes erd
+\end_inset
+
+ tab in the left panel to see the loaded set of endmembers (Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:matlab_workspace"
+
+\end_inset
+
+).
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename images/matlab5.png
+	lyxscale 30
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Into the 
+\begin_inset Quotes eld
+\end_inset
+
+Endmembers
+\begin_inset Quotes erd
+\end_inset
+
+ folder.
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:matlab_endmembers"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename images/matlab6.png
+	lyxscale 30
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+The endmembers showed in the workspace tab.
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:matlab_workspace"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+To group the reflectance values of the set of endmembers, or a subset, the
+ 
+\begin_inset Quotes eld
+\end_inset
+
+endmembersReflectance.m
+\begin_inset Quotes erd
+\end_inset
+
+ file can be used or modified (Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:endmembersReflectance"
+
+\end_inset
+
+).
+ This file is inside the 
+\begin_inset Quotes eld
+\end_inset
+
+Endmembers
+\begin_inset Quotes erd
+\end_inset
+
+ folder.
+ To use it just type the command:
+\end_layout
+
+\begin_deeper
+\begin_layout LyX-Code
+endmembersReflectance
+\end_layout
+
+\begin_layout Standard
+This command will create an 
+\begin_inset Quotes eld
+\end_inset
+
+endmembersReflectance.mat
+\begin_inset Quotes erd
+\end_inset
+
+ file that could be loaded to get a matrix with the endmembers reflectance
+ (Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:endmembersReflectanceMatrix"
+
+\end_inset
+
+).
+ An 
+\begin_inset Quotes eld
+\end_inset
+
+endmembersReflectance.mat
+\begin_inset Quotes erd
+\end_inset
+
+ file with the full selected endmembers reflectance is also included for
+ direct use.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename images/matlab_endmembersReflectance.png
+	lyxscale 30
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+The endmembersReflectance.m file.
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:endmembersReflectance"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename images/matlab8.png
+	lyxscale 30
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+The endmembers reflectance matrix loaded by endmembersReflectance.mat file.
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:endmembersReflectanceMatrix"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Sometimes the use of the full spectra range (the 
+\begin_inset Formula $2152$
+\end_inset
+
+ bands) is not necesary or it could be computationally overcosting.
+ To select a uniform range of bands all along the spectra use the command
+\end_layout
+
+\begin_deeper
+\begin_layout LyX-Code
+endmembersReduced = endmembers(:,1:n:2151)
+\end_layout
+
+\begin_layout Standard
+where 
+\begin_inset Formula $n$
+\end_inset
+
+ is the selecting ratio.
+ In a plot of the same material spectra with the full range and the reduced
+ one, no significant differences are visually apreciated (Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "EndmemberReductionPlot"
+
+\end_inset
+
+).
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename images/matlab11.png
+	lyxscale 30
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Plot of a material spectra with the full range (left) and the reduced one
+ (right).
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset label
+LatexCommand label
+name "EndmemberReductionPlot"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Making synthetic abundancies
+\end_layout
+
+\begin_layout Subsection
+Legendre method
+\end_layout
+
+\begin_layout Itemize
+To build a synthetic abundancies sample with the Legendre method just type
+ the command:
+\end_layout
+
+\begin_deeper
+\begin_layout LyX-Code
+[abundanciesSample] = getAbundanciesSampleLegendre();
+\end_layout
+
+\begin_layout Standard
+that will create a sample of abundancies images with the default parameters
+ (Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:abundSampleLegendreDef"
+
+\end_inset
+
+).
+ The 
+\begin_inset Quotes eld
+\end_inset
+
+abundanceSample
+\begin_inset Quotes erd
+\end_inset
+
+ will be a matrix of 
+\begin_inset Formula $256\times256\times5$
+\end_inset
+
+ elements, being the first and second the spatial dimensions and the last
+ the number of abundancies images.
+\end_layout
+
+\begin_layout Standard
+The parameters used by the Legendre method are:
+\end_layout
+
+\begin_layout Itemize
+ne: number of abundancies images in the sample (default: 5).
+\end_layout
+
+\begin_layout Itemize
+npoints: spatial dimensions of the abundancies images, the images are squared
+ so only one parameter is needed (default: 256).
+\end_layout
+
+\begin_layout Itemize
+minOrder,maxOrder: minimum and maximum orders of the Legendre polynomies
+ (defaults: 1,10).
+\end_layout
+
+\begin_layout Itemize
+maxCoef: weighting coeficient to bias the Legendre polynomies (default:
+ 100).
+\end_layout
+
+\begin_layout Standard
+An use example could be:
+\end_layout
+
+\begin_layout LyX-Code
+[abundanciesSample] = 
+\end_layout
+
+\begin_layout LyX-Code
+getAbundanciesSampleLegendre(3,64,1,5,50);
+\end_layout
+
+\begin_layout Standard
+that will create a sample of 3 abundancies images with 64 pixels-height
+ and width, and with minOrder, maxOrder and maxCoef equals to 1, 10 and
+ 50 respectively (Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:abundSampleLegendreParams"
+
+\end_inset
+
+).
+ In this case the 
+\begin_inset Quotes eld
+\end_inset
+
+abundanceSample
+\begin_inset Quotes erd
+\end_inset
+
+ will be a matrix of 
+\begin_inset Formula $64\times64\times3$
+\end_inset
+
+ elements, being the first and second the spatial dimensions and the last
+ the number of abundancies images.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename images/abudnanciesSampleLegendre.png
+	lyxscale 30
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Sample of abundancies images made by Legendre method (default parameters).
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:abundSampleLegendreDef"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename images/abundanciesSampleLegendreParams.png
+	lyxscale 30
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Sample of abundancies images made by Legendre method (parametrized).
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:abundSampleLegendreParams"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+To build a collection of synthetic abundancies samples with the Legendre
+ method just use the command:
+\end_layout
+
+\begin_deeper
+\begin_layout LyX-Code
+[abundanciesCollection] = getAbundanciesCollectionLegendre(n);
+\end_layout
+
+\begin_layout Standard
+that will create a collection of 
+\begin_inset Formula $n$
+\end_inset
+
+ Legendre abundancies samples with the default parameters.
+ The 
+\begin_inset Quotes eld
+\end_inset
+
+abundanciesCollection
+\begin_inset Quotes erd
+\end_inset
+
+ will be a matrix of 
+\begin_inset Formula $n\times256\times256\times5$
+\end_inset
+
+ elements, being the first the sample index, the second and third the spatial
+ dimensions of each sample and the last the number of abundancies images.
+\end_layout
+
+\begin_layout Standard
+To control the parameters of the Legendre method, just put the parameters
+ explained above after the 
+\begin_inset Formula $n$
+\end_inset
+
+ parameter.
+ An example:
+\end_layout
+
+\begin_layout LyX-Code
+[abundanciesCollection] = 
+\end_layout
+
+\begin_layout LyX-Code
+getAbundanciesCollectionLegendre(20,3,64,1,5,50);
+\end_layout
+
+\begin_layout Standard
+will create a collection of twenty Legendre samples with 3 abundancies images
+ each.
+ In this case the 
+\begin_inset Quotes eld
+\end_inset
+
+abundanciesCollection
+\begin_inset Quotes erd
+\end_inset
+
+ will be a matrix of 
+\begin_inset Formula $20\times64\times64\times3$
+\end_inset
+
+ elements, being the first the sample index, the second and third the spatial
+ dimensions of each sample and the last the number of abundancies images.
+\end_layout
+
+\end_deeper
+\begin_layout Subsection
+Gaussian Fields method
+\end_layout
+
+\begin_layout Itemize
+To build a synthetic abundancies sample with the Gaussian Fields method
+ just type the command:
+\end_layout
+
+\begin_deeper
+\begin_layout LyX-Code
+[abundanciesSample] = getAbundanciesSampleGaussianFields();
+\end_layout
+
+\begin_layout Standard
+that will create a sample of abundancies images with the default parameters
+ (Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:abundSampleMatternGFParams"
+
+\end_inset
+
+).
+ The 
+\begin_inset Quotes eld
+\end_inset
+
+abundanceSample
+\begin_inset Quotes erd
+\end_inset
+
+ will be a matrix of 
+\begin_inset Formula $256\times256\times5$
+\end_inset
+
+ elements, being the first and second the spatial dimensions and the last
+ the number of abundancies images.
+\end_layout
+
+\begin_layout Standard
+The parameters used by the Gaussian Fields method are:
+\end_layout
+
+\begin_layout Itemize
+ne: number of abundancies images in the sample (default: 5).
+\end_layout
+
+\begin_layout Itemize
+height, width: spatial dimensions of the abundancies images (defaults: 256,256).
+\end_layout
+
+\begin_layout Itemize
+type: type of Gaussian Fields used (default 1)
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+1: Spheric
+\end_layout
+
+\begin_layout Itemize
+2: Exponential
+\end_layout
+
+\begin_layout Itemize
+3: Rational
+\end_layout
+
+\begin_layout Itemize
+4: Mattern
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+theta1, theta2: parameters for the Gaussian Field type.
+ It depends of each type of Gaussian Field.
+ To see it in detail use the help command:
+\end_layout
+
+\begin_deeper
+\begin_layout LyX-Code
+help getAbundanciesSampleGaussianFields;
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+Some uses:
+\end_layout
+
+\begin_layout LyX-Code
+[abundanciesSample] = 
+\end_layout
+
+\begin_layout LyX-Code
+getAbundanciesSampleGaussianFields(4,256,256,1);
+\end_layout
+
+\begin_layout Standard
+that will create a sample of 4 abundancies images with 256 pixels-height
+ and width, using the Spheric Gaussian Field with the default parameters
+ (Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:abundSampleSphericGFDef"
+
+\end_inset
+
+).
+\end_layout
+
+\begin_layout LyX-Code
+[abundanciesSample] = 
+\end_layout
+
+\begin_layout LyX-Code
+getAbundanciesSampleGaussianFields(4,256,256,1,50,0);
+\end_layout
+
+\begin_layout Standard
+that will create a sample of 4 abundancies images with 256 pixels-height
+ and width, using the Spheric Gaussian Field with the parameters changed
+ to 
+\begin_inset Formula $theta1=50$
+\end_inset
+
+, 
+\begin_inset Formula $theta2$
+\end_inset
+
+ is not used for this Gaussian Field type (Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:abundSampleSphericGFParams"
+
+\end_inset
+
+).
+\end_layout
+
+\begin_layout LyX-Code
+[abundanciesSample] = 
+\end_layout
+
+\begin_layout LyX-Code
+getAbundanciesSampleGaussianFields(4,256,256,2);
+\end_layout
+
+\begin_layout Standard
+that will create a sample of 4 abundancies images with 256 pixels-height
+ and width, using the Exponential Gaussian Field with the default parameters
+ (Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:abundSampleExponentialGFDef"
+
+\end_inset
+
+).
+\end_layout
+
+\begin_layout LyX-Code
+[abundanciesSample] = 
+\end_layout
+
+\begin_layout LyX-Code
+getAbundanciesSampleGaussianFields(4,256,256,2,1,2);
+\end_layout
+
+\begin_layout Standard
+that will create a sample of 4 abundancies images with 256 pixels-height
+ and width, using the Exponential Gaussian Field with the parameters changed
+ to 
+\begin_inset Formula $theta1=1$
+\end_inset
+
+ and 
+\begin_inset Formula $theta2=2$
+\end_inset
+
+ (Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:abundSampleExponentialsGFParams"
+
+\end_inset
+
+).
+\end_layout
+
+\begin_layout LyX-Code
+[abundanciesSample] = 
+\end_layout
+
+\begin_layout LyX-Code
+getAbundanciesSampleGuaussianFields(4,256,256,3);
+\end_layout
+
+\begin_layout Standard
+that will create a sample of 4 abundancies images with 256 pixels-height
+ and width, using the Rational Gaussian Field with the default parameters
+ (Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:abundSampleRationalGFDef"
+
+\end_inset
+
+).
+\end_layout
+
+\begin_layout LyX-Code
+[abundanciesSample] = 
+\end_layout
+
+\begin_layout LyX-Code
+getAbundanciesSampleGaussianFields(4,256,256,3,1.2,0.85);
+\end_layout
+
+\begin_layout Standard
+that will create a sample of 4 abundancies images with 256 pixels-height
+ and width, using the Rational Gaussian Field with the parameters changed
+ to 
+\begin_inset Formula $theta1=1.2$
+\end_inset
+
+ and 
+\begin_inset Formula $theta2=0.85$
+\end_inset
+
+ (Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:abundSampleRationalGFParams"
+
+\end_inset
+
+).
+\end_layout
+
+\begin_layout LyX-Code
+[abundanciesSample] = 
+\end_layout
+
+\begin_layout LyX-Code
+getAbundanciesSampleGuaussianFields(4,256,256,4);
+\end_layout
+
+\begin_layout Standard
+that will create a sample of 4 abundancies images with 256 pixels-height
+ and width, using the Mattern Gaussian Field with the default parameters
+ (Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:abundSampleMatternGFDef"
+
+\end_inset
+
+).
+\end_layout
+
+\begin_layout LyX-Code
+[abundanciesSample] = 
+\end_layout
+
+\begin_layout LyX-Code
+getAbundanciesSampleGaussianFields(4,256,256,4,5,0.5);
+\end_layout
+
+\begin_layout Standard
+that will create a sample of 4 abundancies images with 256 pixels-height
+ and width, using the Mattern Gaussian Field with the parameters changed
+ to 
+\begin_inset Formula $theta1=5$
+\end_inset
+
+ and 
+\begin_inset Formula $theta2=0.5$
+\end_inset
+
+ (Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:abundSampleMatternGFParams"
+
+\end_inset
+
+).
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename images/abundanciesSampleSphGFDef.png
+	lyxscale 30
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Sample of abundancies images made by Spheric Gaussian Fields method (default
+ parameters).
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:abundSampleSphericGFDef"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename images/abundanciesSampleSphGFParam.png
+	lyxscale 30
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Sample of abundancies images made by Spheric Gaussian Fields method (parametrize
+d).
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:abundSampleSphericGFParams"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename images/abundanciesSampleExpGFDef.png
+	lyxscale 30
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Sample of abundancies images made by Exponential Gaussian Fields method
+ (default parameters).
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:abundSampleExponentialGFDef"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename images/abundanciesSampleExpGFParam.png
+	lyxscale 30
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Sample of abundancies images made by Exponential Gaussian Fields method
+ (parametrized).
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:abundSampleExponentialsGFParams"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename images/abundanciesSampleRatGFDef.png
+	lyxscale 30
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Sample of abundancies images made by Rational Gaussian Fields method (default
+ parameters).
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:abundSampleRationalGFDef"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename images/abundanciesSampleRatGFParam.png
+	lyxscale 30
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Sample of abundancies images made by Rational Gaussian Fields method (parametriz
+ed).
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:abundSampleRationalGFParams"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename images/abundanciesSampleMatGFDef.png
+	lyxscale 30
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Sample of abundancies images made by Mattern Gaussian Fields method (default
+ parameters).
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:abundSampleMatternGFDef"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename images/abundanciesSampleMatGFParam.png
+	lyxscale 30
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Sample of abundancies images made by Mattern Gaussian Fields method (parametrize
+d).
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:abundSampleMatternGFParams"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+To build a collection of synthetic abundancies samples with the Gaussian
+ Fields method just use the command:
+\end_layout
+
+\begin_deeper
+\begin_layout LyX-Code
+[abundanciesCollection] = getAbundanciesCollectionGaussianFields(n);
+\end_layout
+
+\begin_layout Standard
+that will create a collection of 
+\begin_inset Formula $n$
+\end_inset
+
+ Gaussian Fields abundancies samples with the default parameters.
+ The 
+\begin_inset Quotes eld
+\end_inset
+
+abundanciesCollection
+\begin_inset Quotes erd
+\end_inset
+
+ will be a matrix of 
+\begin_inset Formula $n\times256\times256\times5$
+\end_inset
+
+ elements, being the first the sample index, the second and third the spatial
+ dimensions of each sample and the last the number of abundancies images.
+\end_layout
+
+\begin_layout Standard
+To control the parameters of the Gaussian Fields method, just put the parameters
+ explained above after the 
+\begin_inset Formula $n$
+\end_inset
+
+ parameter.
+ An example:
+\end_layout
+
+\begin_layout LyX-Code
+[abundanciesCollection] = 
+\end_layout
+
+\begin_layout LyX-Code
+getAbundanciesCollectionGaussianFields(20,3,64,64,4,5,0.5);
+\end_layout
+
+\begin_layout Standard
+will create a collection of twenty Mattern Gaussian Fields samples with
+ 3 abundancies images each.
+ In this case the 
+\begin_inset Quotes eld
+\end_inset
+
+abundanciesCollection
+\begin_inset Quotes erd
+\end_inset
+
+ will be a matrix of 
+\begin_inset Formula $20\times64\times64\times3$
+\end_inset
+
+ elements, being the first the sample index, the second and third the spatial
+ dimensions of each sample and the last the number of abundancies images.
+\end_layout
+
+\end_deeper
+\begin_layout Section
+Making hyperspectral synthetic images
+\end_layout
+
+\begin_layout Description
+Nota: In all the examples, the 
+\begin_inset Quotes eld
+\end_inset
+
+endmembersReflectance
+\begin_inset Quotes erd
+\end_inset
+
+ variable contains the reflectance values of the set of selected endmembers
+ from the USGS library as explained in the 
+\begin_inset Quotes eld
+\end_inset
+
+Loading endmembers
+\begin_inset Quotes erd
+\end_inset
+
+ subsection.
+\end_layout
+
+\begin_layout Subsection
+Legendre method
+\end_layout
+
+\begin_layout Itemize
+To buid a synthetic hyperspectral image by Legendre method just use the
+ command:
+\end_layout
+
+\begin_deeper
+\begin_layout LyX-Code
+[syntheticImage] = getHyperspectralSyntheticImageLegendre(endmembers);
+\end_layout
+
+\begin_layout Standard
+where 
+\begin_inset Quotes eld
+\end_inset
+
+endmembers
+\begin_inset Quotes erd
+\end_inset
+
+ contains the reflectance values of the materials forming the hyperspectral
+ image.
+ This command will create a default abundancies sample by Legendre method
+ to make the synthetic hyperspectral image.
+ The resulting image is a matrix of 
+\begin_inset Formula $256\times256\times p$
+\end_inset
+
+ where the first and second are the default spatial dimensions of the image
+ and the last is the number of spectral bands given by the endmembers set.
+\end_layout
+
+\begin_layout Standard
+An example:
+\end_layout
+
+\begin_layout LyX-Code
+endmembers = endmembersReflectance(1:4,1:5:2151);
+\end_layout
+
+\begin_layout LyX-Code
+[syntheticImage] = getHyperspectralSyntheticImageLegendre(endmembers);
+\end_layout
+
+\begin_layout Standard
+where the first four endmembers of the selected set are used to form the
+ hyperspectral image.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename images/hyperlegendreAbn.png
+	lyxscale 30
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+It shows some slices of the hyperspectral syntehic image cube made by Legendre
+ method.
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:hyperLegSlices"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+To buid a synthetic hyperspectral image collection by Legendre method just
+ use the command:
+\end_layout
+
+\begin_deeper
+\begin_layout LyX-Code
+[syntheticImageCollection] = 
+\end_layout
+
+\begin_layout LyX-Code
+getHyperspectralSyntheticImageCollectionLegendre(n,endmembers,ne);
+\end_layout
+
+\begin_layout Standard
+where 
+\begin_inset Quotes eld
+\end_inset
+
+n
+\begin_inset Quotes erd
+\end_inset
+
+ is the number of images in the collection, 
+\begin_inset Quotes eld
+\end_inset
+
+endmembers
+\begin_inset Quotes erd
+\end_inset
+
+ contains a collection of reflectance values of endmembers, and 
+\begin_inset Quotes eld
+\end_inset
+
+ne
+\begin_inset Quotes erd
+\end_inset
+
+ is the number of endmembers forming each hyperspectral image.
+ This command will create a default abundancies collection by Legendre method
+ to make the synthetic hyperspectral image collection.
+ The resulting image is a matrix of 
+\begin_inset Formula $n\times256\times256\times p$
+\end_inset
+
+ where the first dimension is the index of images in the collection, the
+ second and third are the default spatial dimensions of the image and the
+ last is the number of spectral bands given by the endmembers set.
+\end_layout
+
+\begin_layout Standard
+An example:
+\end_layout
+
+\begin_layout LyX-Code
+[syntheticImageCollection] = 
+\end_layout
+
+\begin_layout LyX-Code
+getHyperspectralSyntheticImageCollectionLegendre(20,endmembers,4);
+\end_layout
+
+\begin_layout Standard
+that will create a collection of twenty hyperspectral synthetic images by
+ Legendre polynomies method, using for each image four different random
+ endmembers of the full set of endmembers.
+\end_layout
+
+\end_deeper
+\begin_layout Subsection
+Gaussian Fields method
+\end_layout
+
+\begin_layout Itemize
+To buid a synthetic hyperspectral image by Gaussian Fields method just use
+ the command:
+\end_layout
+
+\begin_deeper
+\begin_layout LyX-Code
+[syntheticImage] = 
+\end_layout
+
+\begin_layout LyX-Code
+getHyperspectralSyntheticImageGaussianFields(endmembers);
+\end_layout
+
+\begin_layout Standard
+where 
+\begin_inset Quotes eld
+\end_inset
+
+endmembers
+\begin_inset Quotes erd
+\end_inset
+
+ contains the reflectance values of the materials forming the hyperspectral
+ image.
+ This command will create a default abundancies sample by Gaussian Fields
+ method to make the synthetic hyperspectral image.
+ The resulting image is a matrix of 
+\begin_inset Formula $256\times256\times p$
+\end_inset
+
+ where the first and second are the default spatial dimensions of the image
+ and the last is the number of spectral bands given by the endmembers set.
+\end_layout
+
+\begin_layout Standard
+An example:
+\end_layout
+
+\begin_layout LyX-Code
+endmembers = endmembersreflectance(1:4,1:5:2151);
+\end_layout
+
+\begin_layout LyX-Code
+[syntheticImage] = 
+\end_layout
+
+\begin_layout LyX-Code
+getHyperspectralSyntheticImageGaussianFields(endmembers);
+\end_layout
+
+\begin_layout Standard
+where the first four endmembers of the selected set are used to form the
+ hyperspectral image.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename images/hyperGFAbn.png
+	lyxscale 30
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+It shows some slices of the hyperspectral syntehic image cube made by Gaussian
+ Fields method.
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:hyperGFSlices"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+To buid a synthetic hyperspectral image collection by Gaussian Fields method
+ just use the command:
+\end_layout
+
+\begin_deeper
+\begin_layout LyX-Code
+[syntheticImageCollection] = 
+\end_layout
+
+\begin_layout LyX-Code
+getHyperspectralSyntheticImageCollectionGaussianFields(n,endmembers,ne);
+\end_layout
+
+\begin_layout Standard
+where 
+\begin_inset Quotes eld
+\end_inset
+
+n
+\begin_inset Quotes erd
+\end_inset
+
+ is the number of images in the collection, 
+\begin_inset Quotes eld
+\end_inset
+
+endmembers
+\begin_inset Quotes erd
+\end_inset
+
+ contains a collection of reflectance values of endmembers, and 
+\begin_inset Quotes eld
+\end_inset
+
+ne
+\begin_inset Quotes erd
+\end_inset
+
+ is the number of endmembers forming each hyperspectral image.
+ This command will create a default abundancies collection by Gaussian Fields
+ method to make the synthetic hyperspectral image collection.
+ The resulting image is a matrix of 
+\begin_inset Formula $n\times256\times256\times p$
+\end_inset
+
+ where the first dimension is the index of images in the collection, the
+ second and third are the default spatial dimensions of the image and the
+ last is the number of spectral bands given by the endmembers set.
+\end_layout
+
+\begin_layout Standard
+An example:
+\end_layout
+
+\begin_layout LyX-Code
+[syntheticImageCollection] = 
+\end_layout
+
+\begin_layout LyX-Code
+getHyperspectralSyntheticImageCollectionGaussianFields(20,endmembers,4);
+\end_layout
+
+\begin_layout Standard
+that will create a collection of twenty hyperspectral synthetic images by
+ Gaussian Fields method, using for each image four different random endmembers
+ of the full set of endmembers.
+\end_layout
+
+\end_deeper
+\begin_layout Subsection
+By prebuild abundancies
+\end_layout
+
+\begin_layout Itemize
+To buid a synthetic hyperspectral image by the use of a prebuild abundancies
+ sample use the command:
+\end_layout
+
+\begin_deeper
+\begin_layout LyX-Code
+[syntheticImage] = getHyperspectralSyntheticImage(endmembers,abundancies);
+\end_layout
+
+\begin_layout Standard
+where 
+\begin_inset Quotes eld
+\end_inset
+
+endmembers
+\begin_inset Quotes erd
+\end_inset
+
+ contains the reflectance values of the materials forming the hyperspectral
+ image and 
+\begin_inset Quotes eld
+\end_inset
+
+abundancies
+\begin_inset Quotes erd
+\end_inset
+
+ is an abundancies sample.
+ The resulting image is a matrix of 
+\begin_inset Formula $m\times n\times p$
+\end_inset
+
+ where the first and second are the default spatial dimensions of the image
+ given by the abundancies sample and the last is the number of spectral
+ bands given by the endmembers set.
+\end_layout
+
+\begin_layout Standard
+An example:
+\end_layout
+
+\begin_layout LyX-Code
+endmembers = endmembersreflectance(1:4,1:5:2151);
+\end_layout
+
+\begin_layout LyX-Code
+[abundancies] = getAbundanciesSampleGaussianFields();
+\end_layout
+
+\begin_layout LyX-Code
+[syntheticImage] = 
+\end_layout
+
+\begin_layout LyX-Code
+getHyperspectralSyntheticImage(endmembers,abundancies);
+\end_layout
+
+\begin_layout Standard
+where the first four endmembers of the selected set and a default Spheric
+ Gaussian Field abundancies sample are used to form the hyperspectral image.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+To buid a synthetic hyperspectral image collection by the use of a prebuild
+ abundancies sample use the command:
+\end_layout
+
+\begin_deeper
+\begin_layout LyX-Code
+[syntheticImageCollection] = 
+\end_layout
+
+\begin_layout LyX-Code
+getHyperspectralSyntheticImageCollection(n,endmembers,ne,abundanciesCollection);
+\end_layout
+
+\begin_layout Standard
+where 
+\begin_inset Quotes eld
+\end_inset
+
+n
+\begin_inset Quotes erd
+\end_inset
+
+ is the number of images in the collection, 
+\begin_inset Quotes eld
+\end_inset
+
+endmembers
+\begin_inset Quotes erd
+\end_inset
+
+ contains a collection of reflectance values of endmembers, 
+\begin_inset Quotes eld
+\end_inset
+
+ne
+\begin_inset Quotes erd
+\end_inset
+
+ is the number of endmembers forming each hyperspectral image and 
+\begin_inset Quotes eld
+\end_inset
+
+abudnanciesCollection
+\begin_inset Quotes erd
+\end_inset
+
+ is a prebuild collection of abundancies samples.
+ The resulting image is a matrix of 
+\begin_inset Formula $n\times w\times h\times p$
+\end_inset
+
+ where the first dimension is the index of images in the collection, the
+ second and third are the spatial dimensions of the image given by the abundanci
+es, and the last is the number of spectral bands given by the endmembers
+ set.
+\end_layout
+
+\begin_layout Standard
+An example:
+\end_layout
+
+\begin_layout LyX-Code
+[abundanciesCollection] = getAbundanciesCollectionGaussianFields(20,4);
+\end_layout
+
+\begin_layout LyX-Code
+[syntheticImageCollection] =
+\end_layout
+
+\begin_layout LyX-Code
+getHyperspectralSyntheticImageCollection
+\end_layout
+
+\begin_layout LyX-Code
+(20,endmembers,4,abundanciesCollection);
+\end_layout
+
+\begin_layout Standard
+that will create a collection of twenty hyperspectral synthetic images by
+ Gaussian Fields method, using for each image four different random endmembers
+ of the full set of endmembers.
+\end_layout
+
+\end_deeper
+\begin_layout Chapter
+\begin_inset CommandInset label
+LatexCommand label
+name "cha:Synthetic-Graphical-User"
+
+\end_inset
+
+Synthesis Tool GUI
+\end_layout
+
+\begin_layout Section
+Synthesis Tool GUI code
+\end_layout
+
+\begin_layout Standard
+The Synthesis Tool Graphical User Interface is included under the 
+\begin_inset Quotes eld
+\end_inset
+
+gui
+\begin_inset Quotes erd
+\end_inset
+
+ folder.
+ This fodler contains three files:
+\end_layout
+
+\begin_layout Itemize
+synthetic_run.fig: The figure design file used by the GUIDE Matlab Toolbox.
+\end_layout
+
+\begin_layout Itemize
+synthetic_run.m: the 
+\begin_inset Quotes eld
+\end_inset
+
+.m
+\begin_inset Quotes erd
+\end_inset
+
+ file corresponding to the figrue file, containing the code.
+\end_layout
+
+\begin_layout Itemize
+endmembers.mat: a 
+\begin_inset Quotes eld
+\end_inset
+
+.mat
+\begin_inset Quotes erd
+\end_inset
+
+ file containing variables related to the USGS endmembers library, needed
+ by the interface to properly work.
+\end_layout
+
+\begin_layout Section
+Using the Synthesis Tool GUI
+\end_layout
+
+\begin_layout Standard
+To run the Synthssis Tool GUI just type the command:
+\end_layout
+
+\begin_layout LyX-Code
+synthetic_run
+\end_layout
+
+\begin_layout Standard
+An interface will appear (Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Synthetic-Tool-GUI"
+
+\end_inset
+
+).
+ The interface has three panels: the Abundances, Images and Endmembers panels.
+ Abudnances panel allows the user to select the way abundance images will
+ be created.
+ Images panel allows the user to select the amount of hyperspectral synthetic
+ images to be created, as well as the spatial (lines and samples) dimensions
+ of the images and the number of spectral signatures (endmembers) that are
+ going to be used to build the image.
+ This endmembers are randomly selected from the set of available endmembers
+ choosed on the Endmembers panel.
+ The sampling can be do with or without repetition.
+\end_layout
+
+\begin_layout Standard
+The endmembers panel show the available spectral signatures from the USGS
+ spectral library.
+ This is indexed by the number of spectral bands (Bands field) and the type
+ of materials (Dataset field).
+ The user will add spectral signatures to form the set of endmembers from
+ which select the endmembers to build each image.
+ All the endmembers must have the same number of spectral bands, but they
+ could be selected from different datasets.
+ When one endmember is selected, its spectral signature will be show in
+ red in the plotting figure (Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Selecting-an-endmember-1"
+
+\end_inset
+
+).
+ Once the selected endmember is added to the set it will be shown in blue,
+ and the counter will be increased (Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Adding-an-endmember"
+
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename images/gui.png
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Synthetic-Tool-GUI"
+
+\end_inset
+
+Synthetic Tool GUI
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename images/select_endmembers.png
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Selecting-an-endmember-1"
+
+\end_inset
+
+Selecting an endmember
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename images/adding_endmember.png
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Adding-an-endmember"
+
+\end_inset
+
+Adding an endmember
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+When you are ready to build the images, press the 
+\begin_inset Quotes eld
+\end_inset
+
+Run
+\begin_inset Quotes erd
+\end_inset
+
+ button.
+ A window resuming the building process will be showed (Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:run"
+
+\end_inset
+
+).
+ If agree, the images will be created and saved in 
+\begin_inset Quotes eld
+\end_inset
+
+hyper-N.mat
+\begin_inset Quotes erd
+\end_inset
+
+ files under the current work folder (Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:The-synthetyc-image"
+
+\end_inset
+
+).
+ It will be created as many files as images.
+ Each file contains the hyperspectral synthetic image, the abundance images
+ and the endmembers used in the synthesis process.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename images/run.png
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:run"
+
+\end_inset
+
+Running the synthesis process
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename images/completed.png
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:The-synthetyc-image"
+
+\end_inset
+
+The synthetic image files creation completed
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

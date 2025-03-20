@@ -1,0 +1,25 @@
+ENVI
+description = {
+  Classification Image created from input ROIs [Wed Mar 03 16:26:45 2021]}
+samples = 123
+lines   = 86
+bands   = 1
+header offset = 0
+file type = ENVI Classification
+data type = 1
+interleave = bsq
+sensor type = Unknown
+classes = 2
+class lookup = {
+   0,   0,   0, 255, 255,   0}
+class names = {
+ Unclassified, GreenFabric [Yellow] 50 points}
+byte order = 0
+x start = 4976
+y start = 1187
+map info = {UTM, 1.000, 1.000, 669639.600, 5328106.000, 7.0000000000e-001, 7.0000000000e-001, 32, North, WGS-84, units=Meters}
+coordinate system string = {PROJCS["UTM_Zone_32_Northern_Hemisphere",GEOGCS["GCS_WGS_1984 [WGS84] / U T M",DATUM["D_WGS_1984",SPHEROID["WGS84",6378137.0,298.2572201434283]],PRIMEM["Greenwich",0.0],UNIT["Degree",0.0174532925199433]],PROJECTION["Transverse_Mercator"],PARAMETER["false_easting",500000.0],PARAMETER["false_northing",0.0],PARAMETER["central_meridian",9.0],PARAMETER["scale_factor",0.9996],PARAMETER["latitude_of_origin",0.0],UNIT["Meter",1.0]]}
+wavelength units = Unknown
+pixel size = {7.00000000e-001, 7.00000000e-001, units=Meters}
+band names = {
+ Class Image from ROIs}
