@@ -10,7 +10,7 @@ If you find this project useful in your own work, please cite this repository an
 
 ## Requirements
 
-1. a MATLAB license and the MATLAB software. See https://nl.mathworks.com/products/matlab.html. Recommended MATLAB extensions are the *Image Processing Toolbox*, *Parallel Computing Toolbox*, *Statistics and Machine Learning Toolbox*, and the *Hyperspectral Imaging Library for Image Processing Toolbox*.
+1. a MATLAB license and the MATLAB software. See https://www.mathworks.com/products/matlab.html. Recommended MATLAB extensions are the *Image Processing Toolbox*, *Parallel Computing Toolbox*, *Statistics and Machine Learning Toolbox*, and the *Hyperspectral Imaging Library for Image Processing Toolbox*.
 2. a recent version of Julia. See https://julialang.org/downloads/
 3. The Julia packages ```LinearAlgebra```, ```JuMP```, ```Ipopt```, ```MAT``` and ```MathOptInterface```
 
