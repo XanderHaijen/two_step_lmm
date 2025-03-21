@@ -47,7 +47,7 @@ function [X, A, S, E, parameters, err] = generate_structured_data(n, p, k, SNR, 
     end
     
     % load data and initialize parameters
-    load /home/vlab/Documents/UAntwerpen/Unmixing/MATLAB_scripts/unmixing_functions/E.mat;
+    load E.mat
     sigma = 10^(-SNR / 10);
 
     % select k random endmembers

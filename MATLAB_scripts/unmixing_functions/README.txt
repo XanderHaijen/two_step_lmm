@@ -1,19 +1,19 @@
 This folder contains several functions to be used for unmixing hyperspectral data. The functions are:
 
 CONTENTS:
-- the ELMM foler: containing an implementation of the Extended Linear Mixing Model (ELMM) by Drumetz et al. (2016):
+- the elmm foler: containing an implementation of the Extended Linear Mixing Model (ELMM) by Drumetz et al. (2016):
 - the synthesis folder: functions to generate synthetic abundance maps according to Gaussian Random Fields (GRF), which can be foun at https://www.ehu.eus/ccwintco/index.php/Hyperspectral_Imagery_Synthesis_tools_for_MATLAB
 - abundance_error.m: Function to calculate the abundance error of a hyperspectral image (RMSE)
-- angle_two_step_LMM.m: Function that defines the cost function used in ip_2LMM_angle.m
 - calculate_abundance.m: Function that generates a structured abundance sequence uniformly covering the simplex
 - E.mat: A file containing the endmembers of a hyperspectral image.
 - FCLSU.m: Function to perform Fully Constrained Least Squares Unmixing (FCLSU)
+- generate_structured_data.m: Function that generates a structured abundance sequence uniformly covering the simplex
 - generateSyntheticImage.m: Function to generate a synthetic image with a given number of endmembers and a given number of pixels with GRF abundance maps
 - getScalingsSampleGaussianField.m: Function to generate scaling factors for a synthetic image using Gaussian Random Fields
-- image_error.m: Function to calculate the reconstruction error of a hyperspectral image
+- image_error.m: Function to calculate the reconstruction error of a hyperspectral image (RMSE or SAD)
 - model_errors.m: Function to calculate the abundance and (possibly) scaling factor errors of a hyperspectral image
 - plot_abundance_map.m: Function to plot the abundance maps of a hyperspectral image. This function is made to work inside a subplot with multiple abundance map estimations.
-- plot_reconstruction_error.m: Function to plot the reconstruction error of a hyperspectral image pixel-wise
+- plot_reconstruction_error.m: Function to plot the reconstruction error of a hyperspectral image pixel-wise (RMSE or SAD)
 - plot_scaling_factors.m: Function to plot the scaling factors of a hyperspectral image. The plot generates two subplots: a histogram of the scaling factors and a boxplot of the scaling factors.
 - README.txt: This file
 - reconstruct.m: Function to reconstruct a hyperspectral image from its endmembers, scaling factors, and abundance maps. The model type is deduced from the size of the scaling factors.
