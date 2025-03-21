@@ -10,7 +10,7 @@ If you find this project useful in your own work, please cite this repository an
 
 ## Requirements
 
-1. a MATLAB license and the MATLAB software. See https://nl.mathworks.com/products/matlab.html. Recommended MATLAB extensions are the *Image Processing Toolbox*, *Parallel Computing Toolbox*, *Image Processing Toolbox*, and the *Hyperspectral Imaging Library for Image Processing Toolbox*.
+1. a MATLAB license and the MATLAB software. See https://nl.mathworks.com/products/matlab.html. Recommended MATLAB extensions are the *Image Processing Toolbox*, *Parallel Computing Toolbox*, *Statistics and Machine Learning Toolbox*, and the *Hyperspectral Imaging Library for Image Processing Toolbox*.
 2. a recent version of Julia. See https://julialang.org/downloads/
 3. The Julia packages ```LinearAlgebra```, ```JuMP```, ```Ipopt```, ```MAT``` and ```MathOptInterface```
 
@@ -24,5 +24,3 @@ This project contains the following folders and subfolder
     - **unmixing_functions**: containing the MATLAB functions and auxiliary routines used in the experiments. Refer to this folder's README file for more information
 3. LICENSE.txt, containing the license
 4. README.md, this file
-
-## Contact

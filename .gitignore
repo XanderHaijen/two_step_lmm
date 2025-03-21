@@ -1,3 +1,4 @@
 *.asv
 *.jpg
-*.mat
+image_data.mat
+ipopt_results.mat
