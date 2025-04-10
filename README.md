@@ -3,7 +3,7 @@
 This project implements a two-step Linear Mixing Model (2LMM) for hyperspectral unmixing. The two-step LMM is designed to handle spectral variability by incorporating pixel- and endmember-specific scaling factors. The project includes tools for generating synthetic data, applying the two-step LMM, and evaluating the results.
 
 ## Re-use
-This project is licensed under the CC-BY-SA-4.0 License. See the LICENSE file for details.
+This project is licensed under the CC-BY-4.0 License. See the LICENSE file for details.
 
 If you find this project useful in your own work, please cite this repository and/or the paper
 *Haijen, X., Koirala, B., Tao, X., & Scheunders, P. (2025). A Two-step Linear Mixing Model for Unmixing under Hyperspectral Variability. To appear in the 45th International Geoscience and Remote Sensing Symposium (IGARSS), Brisbane.*

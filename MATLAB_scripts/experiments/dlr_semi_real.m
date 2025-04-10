@@ -7,7 +7,7 @@ rng default
 SNR = 60; % Signal-to-Noise Ratio in dB
 S_low = 0.5; S_high = 1.5; % lower and upper bounds for the generation of scaling factors
 smooth_S = false; % if true, the pixel scaling factors are generated using a Gaussian Random Field (GRF)
-model = 'two-step'; % or 'two-step'. Selects the physical model used for variability generation
+model = 'extended'; % or 'two-step'. Selects the physical model used for variability generation
 type = 4; theta1 = 15; theta2 = 1.5; % GRF parameters, used if smooth_S = true
 
 %% generate a semi-real hyperspectral image based on the DLR dataset
@@ -47,15 +47,15 @@ if strcmp(model, "two-step")
     end
     
     % plot the pixel scaling factors
-    heatmap(reshape(SX, [width, height]));
-    colormap jet;
-    title("Pixel scaling factors");
+    % heatmap(reshape(SX, [width, height]));
+    % colormap jet;
+    % title("Pixel scaling factors");
 
     SE = rand(k, 1); % endmember scaling vector
     S = [SE; SX(:)]; % total scaling vector
 
     % generate synthetic image
-    X_synth = (E * diag(S(1:k)) * A_gt * diag(S(k+1:end)))' + err;
+    X = (E * diag(S(1:k)) * A_gt * diag(S(k+1:end)))' + err;
 elseif strcmp(model, 'extended')
     if smooth_S
         S = zeros(k, width, height);
@@ -77,14 +77,14 @@ elseif strcmp(model, 'extended')
     end
 
     % generate synthetic image
-    X_synth = (E * (S .* A_gt))' + err;
+    X = (E * (S .* A_gt))' + err;
 else
     error("´´model´´ should be either ´´extended´´ or ´´two-step´´")
 end
 
 
 % save E and X_synth to file
-save('image_data.mat', "X_synth", "E", "S_low", "S_high");
+save('image_data.mat', "X", "E", "S_low", "S_high");
 
 % variables for bookkeeping
 RMSE_A = zeros(5, 1);
@@ -97,7 +97,7 @@ delta_t = zeros(5, 1);
 disp("FCLSU")
 
 tic
-A_LMM = FCLSU(X_synth, E);
+A_LMM = FCLSU(X, E);
 delta_t(1) = toc;
 
 RMSE_A(1) = model_errors(A_gt, A_LMM);
@@ -106,7 +106,7 @@ RMSE_A(1) = model_errors(A_gt, A_LMM);
 disp("SCLSU")
 
 tic
-[A_SLMM, S_SLMM] = SCLSU(X_synth, E);
+[A_SLMM, S_SLMM] = SCLSU(X, E);
 delta_t(2) = toc;
 
 RMSE_A(2) = model_errors(A_gt, A_SLMM);
@@ -116,7 +116,7 @@ A_init = A_SLMM;
 
 disp("ELMM (Warm start)")
 tic
-[A_ELMM_WS, S_ELMM_WS] = run_ELMM(X_synth, E, width, height, false, false, A_init);
+[A_ELMM_WS, S_ELMM_WS] = run_ELMM(X, E, width, height, false, false, A_init);
 delta_t(3) = toc;
 delta_t(3) = delta_t(3) + delta_t(2); % add time to compute SCLSU initialization
 
@@ -125,13 +125,15 @@ RMSE_A(3) = model_errors(A_gt, A_ELMM_WS);
 %% Extended Linear Mixing Model (Cold start)
 disp("ELMM (Cold Start)")
 tic
-[A_ELMM_CS, S_ELMM_CS] = run_ELMM(X_synth, E, width, height, false, false);
+[A_ELMM_CS, S_ELMM_CS] = run_ELMM(X, E, width, height, false, false);
 delta_t(4) = toc;
 
 RMSE_A(4) = model_errors(A_gt, A_ELMM_CS);
 
 %% 2LMM using two-scaling-factor approach (using IPOPT)
-% run the file ipopt.jl to calculate 2LMM results
+% run the file ipopt.jl to calculate 2LMM results from the main directory
+% by executing the command
+% ´´ julia Julia_scripts/ipopt.jl ´´
 disp('2LMM')
 clear A_2LMM
 clear S_2LMM
@@ -168,8 +170,8 @@ disp(T2)
 figure;
 tot = 6; % total number of rows
 plot_abundance_map(A_gt, width, height, 'GT', 1, tot);
-plot_abundance_map(A_LMM, width, height, 'FCLSU', 2, tot);
-plot_abundance_map(A_SLMM, width, height, 'CLSU', 3, tot);
+plot_abundance_map(A_LMM, width, height, 'LMM', 2, tot);
+plot_abundance_map(A_SLMM, width, height, 'SLMM', 3, tot);
 plot_abundance_map(A_ELMM_WS, width, height, 'WS-ELMM', 4, tot);
 plot_abundance_map(A_ELMM_CS, width, height, 'CS-ELMM', 5, tot);
 plot_abundance_map(A_2LMM, width, height, '2LMM', 6, tot);
