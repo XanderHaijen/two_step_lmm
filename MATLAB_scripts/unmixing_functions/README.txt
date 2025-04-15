@@ -37,7 +37,7 @@ NAMING CONVENTIONS:
 - Image dimensions are denoted by 'width' and 'height'
 - The abundance maps are denoted by 'A', an have dimensions 'k' x 'n'
 - The endmembers are denoted by 'E', and have dimensions 'p' x 'k'
-- The image matrix is denoted by 'X', and has dimensions 'n' x 'p'. When we deviate from this, it is mentioned in the function documentation
-- A reshaped image matrix is denoted with the suffix '_r', and has dimensions 'width' x 'height' x 'p'
+- The image matrix is denoted by 'X', and has dimensions 'p' x 'n'. When we deviate from this, it is mentioned in the function documentation
+- A reshaped image matrix is denoted with the suffix '_r', and (mostly) has dimensions 'width' x 'height' x 'p'
 - The scaling factors are denoted by 'S', and have dimensions which depend on the model type
 - To distinguish between real and reconstructed/measured values, the latter have a suffix '_hat', '_cap', or a suffix related to the model type
