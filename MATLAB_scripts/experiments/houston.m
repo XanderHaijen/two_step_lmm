@@ -3,7 +3,7 @@
 width = 105; height = 128; p = 144; k = 4;
 load houston_data.mat
 
-X = reshape(X_r, width * height, p); % p = number of spectral bands
+X = reshape(X_r, width * height, p)'; % p = number of spectral bands
 
 
 materials{1} = 'vegetation'; % identify materials
@@ -46,7 +46,8 @@ disp('ELMM(WS) ...')
 A_init = A_CLSU;
 
 tic
-[A_WS_ELMM, S_WS_ELMM] = run_ELMM(X, E, width, height, false, false, A_init);
+[A_WS_ELMM, S_WS_ELMM] = run_ELMM(X, E, width, height, ...
+    'verbose', false, 'warm_start', false, 'A_init', A_init);
 timings(3) = toc;
 timings(3) = timings(2) + timings(3); % include time of SCLSU initialization
 
@@ -58,7 +59,8 @@ SAD_X(3) = image_error(X, X_hat_WS_ELMM, 'sam');
 disp('ELMM(CS) ...')
 
 tic
-[A_CS_ELMM, S_CS_ELMM] = run_ELMM(X, E, width, height, false, false);
+[A_CS_ELMM, S_CS_ELMM] = run_ELMM(X, E, width, height, ...
+    'verbose', false, 'warm_start', false);
 timings(4) = toc;
 
 X_hat_CS_ELMM = reconstruct(E, A_CS_ELMM, S_CS_ELMM);
@@ -83,15 +85,15 @@ maximum = zeros(1, nb_tot);
 minimum = zeros(1, nb_tot);
 fig = figure;
 tiledlayout(1, nb_tot); nexttile
-[minimum(1), maximum(1)] = plot_reconstruction_error(X, X_hat_LMM, width, height, true, nb_tot, 1);
+[minimum(1), maximum(1)] = plot_reconstruction_error(X, X_hat_LMM, width, height, true);
 title("FCLSU"); nexttile
-[minimum(2), maximum(2)] = plot_reconstruction_error(X, X_hat_SLMM, width, height, true, nb_tot, 2);
+[minimum(2), maximum(2)] = plot_reconstruction_error(X, X_hat_SLMM, width, height, true);
 title("CLSU"); nexttile
-[minimum(3), maximum(3)] = plot_reconstruction_error(X, X_hat_WS_ELMM, width, height, true, nb_tot, 3);
+[minimum(3), maximum(3)] = plot_reconstruction_error(X, X_hat_WS_ELMM, width, height, true);
 title("ELMM(WS)"); nexttile
-[minimum(4), maximum(4)] = plot_reconstruction_error(X, X_hat_CS_ELMM, width, height, true, nb_tot, 4);
+[minimum(4), maximum(4)] = plot_reconstruction_error(X, X_hat_CS_ELMM, width, height, true);
 title("ELMM(CS)"); nexttile
-[minimum(5), maximum(5)] = plot_reconstruction_error(X, X_hat_2LMM, width, height, true, nb_tot, 5);
+[minimum(5), maximum(5)] = plot_reconstruction_error(X, X_hat_2LMM, width, height, true);
 title("2LMM");
 
 maximum = max(maximum);

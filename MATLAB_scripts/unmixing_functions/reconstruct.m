@@ -25,16 +25,21 @@ end
 
 if isempty(S) % LMM
     X = E * A;
-elseif isequal(size(S), [1, n]) || isequal(size(S), [n, 1]) % SLMM
-    X = E * A * diag(S);
-elseif isequal(size(S), [1, k + n]) || isequal(size(S), [k + n, 1]) % 2LMM
-    X = E * diag(S(1:k)) * A * diag(S(k+1:end));
+elseif isequal(size(S), [1, n]) % SLMM
+    X = E * A .* S;
+elseif isequal(size(S), [n, 1]) % SLMM
+    % Note: S is a column vector, so we need to transpose it
+    % to match the dimensions for element-wise multiplication
+    X = E * A .* S';
+elseif isequal(size(S), [1, k + n]) % 2LMM
+    X = E * diag(S(1:k)) * A .* S(k+1:end);
+elseif isequal(size(S), [k + n, 1]) % 2LMM
+    % Note: S(k+1:end) is a column vector, so we need to transpose it
+    % to match the dimensions for element-wise multiplication
+    X = E * diag(S(1:k)) * A .* S(k+1:end)';
 elseif isequal(size(S), [k, n]) % ELMM
     X = E * (S .* A);
 else
     error('Invalid input dimensions for S. Valid dimensions are [1, n], [n, 1], [1, k + n], [k + n, 1], or [k, n].')
 end
-
-% return as a (n x p) matrix
-X = X';
 

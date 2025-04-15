@@ -127,7 +127,7 @@ end
 nn = 2^nextpow2(max(height,width));
 % Generate lambda
 lambda = lambdaGeneration(nn, type, theta1, theta2);
-% Generate abundancies images
+% Generate samples (using abundance generation)
 [scalings, ~] = getSamples(lambda, height, width, 1);
 
 % center at mean 1
@@ -137,4 +137,5 @@ scalings = scalings - mean(scalings(:)) + 1;
 scalings(scalings < 1) = S_min + (1 - S_min) / (1 - min(scalings(:))) * (scalings(scalings < 1) - min(scalings(:)));
 % all values > 1 are rescaled to the interval [1, S_max]
 scalings(scalings > 1) = 1 + (S_max - 1) / (max(scalings(:)) - 1) * (scalings(scalings > 1) - 1);
+
 end

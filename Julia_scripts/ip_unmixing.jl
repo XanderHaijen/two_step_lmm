@@ -505,30 +505,6 @@ function plot_abundance_maps(A::Array{T}) where T<:Real
 end
 
 
-"""
-    smooth_A_penalty(A::Array, width::Integer, height::Integer, mode::String = "L2") -> Number
-
-Compute a smoothness penalty for a 3D array `A` reshaped into dimensions `(k, width, height)`. 
-The penalty is calculated based on the differences between adjacent elements in the horizontal 
-and vertical directions, using either L2 or L1 norms.
-
-# Arguments
-- `A::Array`: A 1D array to be reshaped into dimensions `(k, width, height)`.
-- `width::Integer`: The width of the reshaped array.
-- `height::Integer`: The height of the reshaped array.
-- `mode::String`: The norm to use for calculating the penalty. 
-  - `"L2"` (default): Uses the squared differences (L2 norm).
-  - `"L1"`: Uses the absolute differences (L1 norm).
-
-# Returns
-- `penalty`: The computed smoothness penalty.
-
-# Notes
-- The function assumes that the input array `A` can be reshaped into dimensions `(k, width, height)`.
-- The penalty is computed by summing the differences between adjacent elements in both 
-  horizontal and vertical directions.
-
-"""
 function smooth_A_penalty(A::Array, width::Integer, height::Integer, mode::String = "L2")
     A_r = reshape(A, k, width, height)
     penalty = 0

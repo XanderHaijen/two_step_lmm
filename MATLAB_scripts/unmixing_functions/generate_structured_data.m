@@ -47,7 +47,7 @@ function [X, A, S, E, parameters, err] = generate_structured_data(n, p, k, SNR, 
     end
     
     % load data and initialize parameters
-    load E.mat
+    load E.mat;
     sigma = 10^(-SNR / 10);
 
     % select k random endmembers
@@ -106,7 +106,7 @@ function [X, A, S, E, parameters, err] = generate_structured_data(n, p, k, SNR, 
         error("Model not recognized. Please choose 'two-step' or 'extended'.");
     end
 
-    %add random error and save to file
+    % add random error and save to file
     err = sigma * mean(X, 'all') * randn(p, n);
     X = X + err;
     

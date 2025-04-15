@@ -4,7 +4,7 @@ close all
 rng default
 
 %% set parameters
-SNR = 60; % Signal-to-Noise Ratio in dB
+SNR = 1000; % Signal-to-Noise Ratio in dB
 S_low = 0.5; S_high = 1.5; % lower and upper bounds for the generation of scaling factors
 smooth_S = false; % if true, the pixel scaling factors are generated using a Gaussian Random Field (GRF)
 model = 'extended'; % or 'two-step'. Selects the physical model used for variability generation
@@ -13,11 +13,10 @@ type = 4; theta1 = 15; theta2 = 1.5; % GRF parameters, used if smooth_S = true
 %% generate a semi-real hyperspectral image based on the DLR dataset
 load DLR_HySU/large_targets.mat
 % load DLR_HySU/all_targets.mat
-
 [width, height, p] = size(X); % p = number of spectral bands
 [~, k] = size(E); % k = number of endmembers
 n = width * height; % n = number of pixels
-X_r = reshape(X, [n, p]);
+X_r = reshape(X, [n, p])';
 
 
 % re-order endmembers to for nicer visualization results later on
@@ -34,9 +33,9 @@ A_gt = FCLSU(X_r, E);
 
 %% generate new image based on real abundances and endmembers
 
-% synthetic scaling factors
 sigma = 10^(-SNR / 10);
-err = sigma * randn(n, p);
+err = sigma * randn(p, n) * mean(X_r, 'all'); % noise
+
 
 if strcmp(model, "two-step")
     % generate the pixel scaling factors
@@ -55,7 +54,7 @@ if strcmp(model, "two-step")
     S = [SE; SX(:)]; % total scaling vector
 
     % generate synthetic image
-    X = (E * diag(S(1:k)) * A_gt * diag(S(k+1:end)))' + err;
+    X = E * diag(S(1:k)) * A_gt * diag(S(k+1:end)) + err;
 elseif strcmp(model, 'extended')
     if smooth_S
         S = zeros(k, width, height);
@@ -77,13 +76,13 @@ elseif strcmp(model, 'extended')
     end
 
     % generate synthetic image
-    X = (E * (S .* A_gt))' + err;
+    X = E * (S .* A_gt) + err;
 else
     error("´´model´´ should be either ´´extended´´ or ´´two-step´´")
 end
 
 
-% save E and X_synth to file
+% save E and X to file
 save('image_data.mat', "X", "E", "S_low", "S_high");
 
 % variables for bookkeeping
@@ -116,7 +115,8 @@ A_init = A_SLMM;
 
 disp("ELMM (Warm start)")
 tic
-[A_ELMM_WS, S_ELMM_WS] = run_ELMM(X, E, width, height, false, false, A_init);
+[A_ELMM_WS, S_ELMM_WS] = run_ELMM(X, E, width, height, ...
+    'warm_start', false, 'verbose', false, 'A_init', A_init);
 delta_t(3) = toc;
 delta_t(3) = delta_t(3) + delta_t(2); % add time to compute SCLSU initialization
 
@@ -125,7 +125,8 @@ RMSE_A(3) = model_errors(A_gt, A_ELMM_WS);
 %% Extended Linear Mixing Model (Cold start)
 disp("ELMM (Cold Start)")
 tic
-[A_ELMM_CS, S_ELMM_CS] = run_ELMM(X, E, width, height, false, false);
+[A_ELMM_CS, S_ELMM_CS] = run_ELMM(X, E, width, height, ...
+    'warm_start', false, 'verbose', false);
 delta_t(4) = toc;
 
 RMSE_A(4) = model_errors(A_gt, A_ELMM_CS);
@@ -149,17 +150,17 @@ X_ELMM_WS = reconstruct(E, A_ELMM_WS, S_ELMM_WS);
 X_ELMM_CS = reconstruct(E, A_ELMM_CS, S_ELMM_CS);
 X_2LMM_IP = reconstruct(E, A_2LMM, S_2LMM);
 
-SAD_X(1) = image_error(X_r, X_LMM);
-SAD_X(2) = image_error(X_r, X_SLMM);
-SAD_X(3) = image_error(X_r, X_ELMM_WS);
-SAD_X(4) = image_error(X_r, X_ELMM_CS);
-SAD_X(5) = image_error(X_r, X_2LMM_IP);
+SAD_X(1) = image_error(X, X_LMM);
+SAD_X(2) = image_error(X, X_SLMM);
+SAD_X(3) = image_error(X, X_ELMM_WS);
+SAD_X(4) = image_error(X, X_ELMM_CS);
+SAD_X(5) = image_error(X, X_2LMM_IP);
 
-RMSE_X(1) = image_error(X_r, X_LMM, 'rmse');
-RMSE_X(2) = image_error(X_r, X_SLMM, 'rmse');
-RMSE_X(3) = image_error(X_r, X_ELMM_WS, 'rmse');
-RMSE_X(4) = image_error(X_r, X_ELMM_CS, 'rmse');
-RMSE_X(5) = image_error(X_r, X_2LMM_IP, 'rmse');
+RMSE_X(1) = image_error(X, X_LMM, 'rmse');
+RMSE_X(2) = image_error(X, X_SLMM, 'rmse');
+RMSE_X(3) = image_error(X, X_ELMM_WS, 'rmse');
+RMSE_X(4) = image_error(X, X_ELMM_CS, 'rmse');
+RMSE_X(5) = image_error(X, X_2LMM_IP, 'rmse');
 
 
 T2 = table(RMSE_A, SAD_X, RMSE_X, delta_t, 'RowNames', {'FCLSU', 'SCLSU', 'ELMM_WS', 'ELMM_CS', '2LMM'});
@@ -184,16 +185,14 @@ end
 
 %% plot scaling factors
 % 
-% tot = 6;
-% max_S = max([S_SLMM(:); S_ELMM_WS(:); S_ELMM_CS(:); S_2LMM(:); S_angle(:); S_norm(:)]);
-% figure;
-% 
-% % the function plots a histogram and boxplot of scaling factors and gives
-% % an idea about the distributions of scaling factors
-% 
-% plot_scaling_factors(S_SLMM, 20, "SLMM", max_S, 1, tot);
-% plot_scaling_factors(S_ELMM_WS, 20, "ELMM (WS)", max_S, 2, tot);
-% plot_scaling_factors(S_ELMM_CS, 20, "ELMM (CS)", max_S, 3, tot);
-% plot_scaling_factors(S_2LMM, 20, "2LMM", max_S, 4, tot);
-% plot_scaling_factors(S_angle, 20, "2LMM (angle)", max_S, 5, tot);
-% plot_scaling_factors(S_norm, 20, "2LMM (norm)", max_S, 6, tot);
+tot = 4;
+max_S = max([S_SLMM(:); S_ELMM_WS(:); S_ELMM_CS(:); S_2LMM(:)]);
+figure;
+
+% the function plots a histogram and boxplot of scaling factors and gives
+% an idea about the distributions of scaling factors
+
+plot_scaling_factors(S_SLMM, 20, "SLMM", max_S, 1, tot);
+plot_scaling_factors(S_ELMM_WS, 20, "ELMM (WS)", max_S, 2, tot);
+plot_scaling_factors(S_ELMM_CS, 20, "ELMM (CS)", max_S, 3, tot);
+plot_scaling_factors(S_2LMM, 20, "2LMM", max_S, 4, tot);

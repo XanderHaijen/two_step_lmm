@@ -10,15 +10,14 @@ k = 3;
 SNR = 1000;
 type = 1;
 width = 100; height = 100;
-model = 'extended';
+model = 'two-step';
 smooth_S = false;
 S_low = 0.5; S_high = 1.5; % scaling factors range
 % in experiments, we use (0.5, 1.5) for low scaling variation and (0.1, 8) for high scaling variation
 %% generate synthetic data
 
 % GRF abundance maps
-[X_synth, A, S, E, param, err] = generateSyntheticImage(width, height, p, k, 'snr', SNR, 'model', model, 'smooth_S', smooth_S, 'S_low', S_low, 'S_high', S_high);
-X = X_synth';
+[X, A, S, E, param, err] = generateSyntheticImage(width, height, p, k, 'snr', SNR, 'model', model, 'smooth_S', smooth_S, 'S_low', S_low, 'S_high', S_high);
 
 % save image to file
 save('image_data.mat', 'X', 'E', 'S_low', 'S_high');
@@ -83,7 +82,8 @@ disp('ELMM(WS)')
 A_init = A_SCLSU;
 
 tic
-[A_ELMM_WS, S_ELMM_WS] = run_ELMM(X, E, width, height, false, false, A_init);
+[A_ELMM_WS, S_ELMM_WS] = run_ELMM(X, E, width, height, ...
+    'verbose', false, 'warm_start', false, 'A_init', A_init);
 Delta_t(3) = toc;
 Delta_t(3) = Delta_t(3) + Delta_t(2); % add the time for SCLSU initialization
 
@@ -99,7 +99,8 @@ SAD_X(3) = image_error(X, X_hat_ELMM_WS, 'sam');
 disp('ELMM(CS)')
 % provide no initial guess
 tic
-[A_ELMM_CS, S_ELMM_CS] = run_ELMM(X, E, width, height, false, false);
+[A_ELMM_CS, S_ELMM_CS] = run_ELMM(X, E, width, height, ...
+    'verbose', false, 'warm_start', false);
 Delta_t(4) = toc;
 
 X_hat_ELMM_CS = reconstruct(E, A_ELMM_CS, S_ELMM_CS);
@@ -135,5 +136,5 @@ end
 %% display results
 SAD_X = abs(SAD_X);
 RMSE_S = abs(RMSE_S);
-results = table(RMSE_X, SAD_X, RMSE_A, RMSE_S, Delta_t, 'RowNames', {'FCLSU', 'CLSU', 'ELMM(WS)', 'ELMM(CS)', '2LMM'});
-results = rows2vars(results)
+results = table(RMSE_X, SAD_X, RMSE_A, RMSE_S, Delta_t, 'RowNames', ...
+    {'FCLSU', 'CLSU', 'ELMM(WS)', 'ELMM(CS)', '2LMM'})

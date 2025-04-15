@@ -6,7 +6,7 @@ using LinearAlgebra
 using JuMP, Ipopt
 include("ip_unmixing.jl")
 
-println("Unmixing of Houston hyperspectral image")
+println("Reconstruction of synthetic hyperspectral image")
 println("===============================================")
 
 # Load the .mat file
@@ -17,9 +17,10 @@ X = read(file, "X")
 E = read(file, "E")
 close(file)
 
-S_lower = 0.5
-S_upper = 2
-X = Matrix(X')
+p, n = size(X)
+_, k = size(E)
+println("p = ", p, ", n = ", n, ", k = ", k)
+
 
 Δt = @elapsed begin
     estimated_A, estimated_S = ls_unmixing(X, E, 4, optimizer = optimizer_with_attributes(Ipopt.Optimizer), S_lower = 0.5, S_upper = 2)

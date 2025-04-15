@@ -1,5 +1,5 @@
 
-function [A, S] = run_ELMM(X, E, width, height, warm_start, verbose, A_init, S_init, maxiter, norm, lambda_e, lambda_a, lambda_s)
+function [A, S, E] = run_ELMM(X, E, width, height, varargin)
 % RUN_ELMM Performs Extended Linear Mixing Model (ELMM) using Alternating Direction Method of Multipliers (ADMM)
 %
 % Syntax:
@@ -10,6 +10,8 @@ function [A, S] = run_ELMM(X, E, width, height, warm_start, verbose, A_init, S_i
 %   E         - Endmember matrix (p x k)
 %   width     - Width of the hyperspectral image
 %   height    - Height of the hyperspectral image
+%
+%   Optional Inputs:
 %   warm_start- (Optional) Boolean flag to initialize abundances using SCLSU (default: true)
 %   verbose   - (Optional) Boolean flag to enable verbose output (default: false)
 %   A_init    - (Optional) Initial abundance matrix (endmembers x pixels) (default: uniform distribution)
@@ -34,43 +36,60 @@ function [A, S] = run_ELMM(X, E, width, height, warm_start, verbose, A_init, S_i
 %   using the SCLSU method and provides options for regularization and verbosity.
 
 
+if nargin - length(varargin) < 4
+    error('Not enough input arguments. Expected at least 4 (X, E, width, height).');
+end
+
+if rem(length(varargin), 2) ~= 0
+    error('Optional arguments must be in name/value pairs.');
+end
+
+%% parse optional arguments
 [p, k] = size(E);
+warm_start = true;
+verbose = false;
+A_init = ones(k, width*height) / k;
+S_init = ones(k, width*height);
+maxiter = 300;
+norm = '2,1';
+lambda_e = 1e-3;
+lambda_a = 1e-3;
+lambda_s = 1e-3;
 
-if nargin < 5
-    warm_start = true;
+for i=1:2:length(varargin)
+    switch lower(varargin{i})
+        case 'warm_start'
+            warm_start = varargin{i + 1};
+        case 'verbose'
+            verbose = varargin{i + 1};
+        case 'a_init'
+            A_init = varargin{i + 1};
+        case 's_init'
+            S_init = varargin{i + 1};
+        case 'maxiter'
+            maxiter = varargin{i + 1};
+        case 'norm'
+            norm = varargin{i + 1};
+        case 'lambda_e'
+            lambda_e = varargin{i + 1};
+        case 'lambda_a'
+            lambda_a = varargin{i + 1};
+        case 'lambda_s'
+            lambda_s = varargin{i + 1};
+        case 'spatial_reg'
+            if ~varargin{i + 1}
+                lambda_s = 0;
+                lambda_a = 0;
+            end
+        otherwise
+            warning('Ignoring unknown parameter name: %s', varargin{i});
+    end
 end
-
-if nargin < 6
-    verbose = false;
-end
-
-if nargin < 7
-    A_init = ones(k, width*height) / k;
-end
-
-if nargin < 8
-    S_init = ones(k, width*height);
-end
-
-if nargin < 9
-    maxiter = 300;
-end
-
-if nargin < 10
-    norm = '2,1';
-end
-
-if nargin < 13
-    lambda_e = 1e-3;
-    lambda_a = 1e-3;
-    lambda_s = 1e-3;
-end
-
 
 % reshape the image matrix
-X_r = reshape(X, [width, height, p]);
+X_r = reshape(X', [width, height, p]);
 
-% initialize the scalings and abundances
+%% initialize the scalings and abundances
 % this will overwrite a provided initialization, so provide warm_start = false if you want to use a provided initialization
 if warm_start
     if verbose
@@ -79,8 +98,10 @@ if warm_start
     [A_init, ~] = SCLSU(X, E);
 end
 
-[A, S, ~, ~] = ELMM_ADMM(X_r, A_init, S_init, E,lambda_e,lambda_a,lambda_s, ...
-    norm,verbose, maxiter);
+%% run ELMM
+
+[A, S, E, ~] = ELMM_ADMM(X_r, A_init, S_init, E,lambda_e,lambda_a,lambda_s, ...
+    norm, verbose, maxiter);
 
 end
 

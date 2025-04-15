@@ -20,10 +20,10 @@ if nargin < 3
 end
 
 if strcmp(type, 'rmse')
-    err = sqrt(mean((vec(X) - vec(X_hat)).^2));
-elseif strcmp(type, 'sam')
-    err = 180 / pi * mean(acos(dot(X, X_hat, 2) ./ (vecnorm(X, 2, 2) .* vecnorm(X_hat, 2, 2))));
-    err = real(err); % remove the imaginary part, which might appear due to roundoff errors
+    err = sqrt(mean((X(:) - X_hat(:)).^2));
+elseif strcmpi(type, 'sam') || strcmpi(type, 'sad')
+    err = 180 / pi * mean(acos(dot(X, X_hat, 1) ./ (vecnorm(X, 2, 1) .* vecnorm(X_hat, 2, 1))));
+    err = abs(err); % remove imaginary part which might arise due to roundoff errors
 else
     error('Invalid type. Must be either "rmse" or "sam".')
 end

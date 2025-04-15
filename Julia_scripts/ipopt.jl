@@ -22,14 +22,14 @@ S_lower = read(file, "S_low")
 close(file)
 
 # extract the parameters
-n, p = size(X)
+p, n = size(X)
 _, k = size(E)
-
-X_r = Matrix(X')
+println("p = ", p, ", n = ", n, ", k = ", k)
 
 Δt = @elapsed begin
     # pass model type = 4 for the two-step algorithm
-    estimated_A, estimated_S = ls_unmixing(X_r, E, 4, optimizer = optimizer_with_attributes(Ipopt.Optimizer), S_lower = S_lower, S_upper = S_upper)
+    estimated_A, estimated_S = ls_unmixing(X, E, 4, optimizer = optimizer_with_attributes(Ipopt.Optimizer), 
+    S_lower = S_lower, S_upper = S_upper)
 end
 
 file = matopen("ipopt_results.mat", "w")
