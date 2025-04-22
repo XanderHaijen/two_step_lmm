@@ -50,7 +50,7 @@ if strcmp(model, "two-step")
     % colormap jet;
     % title("Pixel scaling factors");
 
-    SE = rand(k, 1); % endmember scaling vector
+    SE = S_low + (S_high - S_low) * rand(k, 1); % endmember scaling vector
     S = [SE; SX(:)]; % total scaling vector
 
     % generate synthetic image

@@ -72,11 +72,10 @@ else % solve the problem using lsqlin
     n = size(X, 2);
     A = zeros(k, n);
     lb = zeros(k, 1);
-    ub = ones(k, 1);
 
     parfor i=1:n
         d = X(:, i);
-        a_i = lsqlin(E, d, [], [], [], [], lb, ub, ones(k, 1) / k);
+        a_i = lsqlin(E, d, [], [], [], [], lb, [], ones(k, 1) / k);
         A(:, i) = a_i;
     end
 end
